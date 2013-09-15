@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cirrious.MvvmCross.Plugins.Sqlite.WindowsPhone</RootNamespace>
-    <AssemblyName>Cirrious.MvvmCross.Plugins.Sqlite.WindowsPhone</AssemblyName>
+    <RootNamespace>Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone</RootNamespace>
+    <AssemblyName>Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone</AssemblyName>
     <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -83,7 +83,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\Cirrious.MvvmCross.Plugins.Sqlite.Droid\SQLiteNet.cs">
+    <Compile Include="..\Cirrious.MvvmCross.Community.Plugins.Sqlite.Droid\SQLiteNet.cs">
       <Link>SQLiteNet.cs</Link>
     </Compile>
     <Compile Include="MvxWindowsPhoneSQLiteConnectionFactory.cs" />
@@ -95,9 +95,9 @@
       <Project>{B6E27475-E7D0-448C-A5CC-5097DCA1E2DD}</Project>
       <Name>Cirrious.MvvmCross</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Cirrious.MvvmCross.Plugins.Sqlite\Cirrious.MvvmCross.Plugins.Sqlite.csproj">
+    <ProjectReference Include="..\Cirrious.MvvmCross.Community.Plugins.Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.csproj">
       <Project>{72654B8A-5F78-4BDF-BFBB-057DDDF314F1}</Project>
-      <Name>Cirrious.MvvmCross.Plugins.Sqlite</Name>
+      <Name>Cirrious.MvvmCross.Community.Plugins.Sqlite</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

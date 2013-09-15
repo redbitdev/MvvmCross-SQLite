@@ -7,8 +7,8 @@
     <ProjectGuid>{3B83CD5D-F846-41AF-A68D-FC715EAA81FB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cirrious.MvvmCross.Plugins.Sqlite.Wpf</RootNamespace>
-    <AssemblyName>Cirrious.MvvmCross.Plugins.Sqlite.Wpf</AssemblyName>
+    <RootNamespace>Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf</RootNamespace>
+    <AssemblyName>Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -58,7 +58,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Cirrious.MvvmCross.Plugins.Sqlite\Cirrious.MvvmCross.Plugins.Sqlite.csproj">
       <Project>{72654B8A-5F78-4BDF-BFBB-057DDDF314F1}</Project>
-      <Name>Cirrious.MvvmCross.Plugins.Sqlite</Name>
+      <Name>Cirrious.MvvmCross.Community.Plugins.Sqlite</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

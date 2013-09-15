@@ -7,7 +7,7 @@
 
 using SQLite;
 
-namespace Cirrious.MvvmCross.Plugins.Sqlite.WindowsPhone
+namespace Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone
 {
     public class MvxWindowsPhoneSQLiteConnectionFactory : ISQLiteConnectionFactory
     {

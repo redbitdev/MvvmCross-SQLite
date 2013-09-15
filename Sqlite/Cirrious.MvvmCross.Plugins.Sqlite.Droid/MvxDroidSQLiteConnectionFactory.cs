@@ -9,7 +9,7 @@ using System;
 using System.IO;
 using SQLite;
 
-namespace Cirrious.MvvmCross.Plugins.Sqlite.Droid
+namespace Cirrious.MvvmCross.Community.Plugins.Sqlite.Droid
 {
     public class MvxDroidSQLiteConnectionFactory : ISQLiteConnectionFactory
     {

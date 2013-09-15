@@ -12,11 +12,11 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Cirrious.MvvmCross.Plugins.Sqlite")]
+[assembly: AssemblyTitle("Cirrious.MvvmCross.Community.Plugins.Sqlite")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Cirrious.MvvmCross.Plugins.Sqlite")]
+[assembly: AssemblyProduct("Cirrious.MvvmCross.Community.Plugins.Sqlite")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

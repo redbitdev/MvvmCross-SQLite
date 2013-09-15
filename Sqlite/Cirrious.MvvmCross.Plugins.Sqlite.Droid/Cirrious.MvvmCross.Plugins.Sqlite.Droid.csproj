@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cirrious.MvvmCross.Plugins.Sqlite.Droid</RootNamespace>
-    <AssemblyName>Cirrious.MvvmCross.Plugins.Sqlite.Droid</AssemblyName>
+    <RootNamespace>Cirrious.MvvmCross.Community.Plugins.Sqlite.Droid</RootNamespace>
+    <AssemblyName>Cirrious.MvvmCross.Community.Plugins.Sqlite.Droid</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
@@ -80,7 +80,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Cirrious.MvvmCross.Plugins.Sqlite\Cirrious.MvvmCross.Plugins.Sqlite.csproj">
       <Project>{72654B8A-5F78-4BDF-BFBB-057DDDF314F1}</Project>
-      <Name>Cirrious.MvvmCross.Plugins.Sqlite</Name>
+      <Name>Cirrious.MvvmCross.Community.Plugins.Sqlite</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

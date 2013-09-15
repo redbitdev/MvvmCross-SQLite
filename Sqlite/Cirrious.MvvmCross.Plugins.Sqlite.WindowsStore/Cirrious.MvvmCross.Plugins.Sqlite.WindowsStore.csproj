@@ -9,8 +9,8 @@
     <ProjectGuid>{654E3C62-163F-430C-AE77-75E5B569722A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cirrious.MvvmCross.Plugins.Sqlite.WindowsStore</RootNamespace>
-    <AssemblyName>Cirrious.MvvmCross.Plugins.Sqlite.WindowsStore</AssemblyName>
+    <RootNamespace>Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsStore</RootNamespace>
+    <AssemblyName>Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsStore</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -91,7 +91,7 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <ProjectReference Include="..\Cirrious.MvvmCross.Plugins.Sqlite\Cirrious.MvvmCross.Plugins.Sqlite.csproj">
       <Project>{72654b8a-5f78-4bdf-bfbb-057dddf314f1}</Project>
-      <Name>Cirrious.MvvmCross.Plugins.Sqlite</Name>
+      <Name>Cirrious.MvvmCross.Community.Plugins.Sqlite</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

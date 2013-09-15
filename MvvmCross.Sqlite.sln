@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Plugins.Sqlite", "Sqlite\Cirrious.MvvmCross.Plugins.Sqlite\Cirrious.MvvmCross.Plugins.Sqlite.csproj", "{72654B8A-5F78-4BDF-BFBB-057DDDF314F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Community.Plugins.Sqlite", "Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.csproj", "{72654B8A-5F78-4BDF-BFBB-057DDDF314F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Plugins.Sqlite.Droid", "Sqlite\Cirrious.MvvmCross.Plugins.Sqlite.Droid\Cirrious.MvvmCross.Plugins.Sqlite.Droid.csproj", "{E7909D1D-415A-4E35-8A08-8970BA605F2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Community.Plugins.Sqlite.Droid", "Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.Droid\Cirrious.MvvmCross.Community.Plugins.Sqlite.Droid.csproj", "{E7909D1D-415A-4E35-8A08-8970BA605F2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Plugins.Sqlite.Touch", "Sqlite\Cirrious.MvvmCross.Plugins.Sqlite.Touch\Cirrious.MvvmCross.Plugins.Sqlite.Touch.csproj", "{4D6572A6-628A-4C50-9056-D3A9A42C8D7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Community.Plugins.Sqlite.Touch", "Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.Touch\Cirrious.MvvmCross.Community.Plugins.Sqlite.Touch.csproj", "{4D6572A6-628A-4C50-9056-D3A9A42C8D7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Plugins.Sqlite.WindowsStore", "Sqlite\Cirrious.MvvmCross.Plugins.Sqlite.WindowsStore\Cirrious.MvvmCross.Plugins.Sqlite.WindowsStore.csproj", "{654E3C62-163F-430C-AE77-75E5B569722A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsStore", "Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsStore\Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsStore.csproj", "{654E3C62-163F-430C-AE77-75E5B569722A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Plugins.Sqlite.WindowsPhone.Community", "Sqlite\Cirrious.MvvmCross.Plugins.Sqlite.WindowsPhone.Community\Cirrious.MvvmCross.Plugins.Sqlite.WindowsPhone.Community.csproj", "{E043D17C-221A-41CB-BC75-1D48D5AD0B11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone.Community", "Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone.Community\Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone.Community.csproj", "{E043D17C-221A-41CB-BC75-1D48D5AD0B11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Plugins.Sqlite.Wpf", "Sqlite\Cirrious.MvvmCross.Plugins.Sqlite.Wpf\Cirrious.MvvmCross.Plugins.Sqlite.Wpf.csproj", "{3B83CD5D-F846-41AF-A68D-FC715EAA81FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf", "Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf\Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf.csproj", "{3B83CD5D-F846-41AF-A68D-FC715EAA81FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

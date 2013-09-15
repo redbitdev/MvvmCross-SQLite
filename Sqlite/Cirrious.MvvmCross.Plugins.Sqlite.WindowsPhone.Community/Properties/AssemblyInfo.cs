@@ -13,11 +13,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Cirrious.MvvmCross.Plugins.Sqlite.WindowsPhone.Community")]
+[assembly: AssemblyTitle("Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone.Community")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Cirrious.MvvmCross.Plugins.Sqlite.WindowsPhone.Community")]
+[assembly: AssemblyProduct("Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone.Community")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

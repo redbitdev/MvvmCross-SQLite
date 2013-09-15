@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Cirrious.MvvmCross.Plugins.Sqlite.Wpf")]
+[assembly: AssemblyTitle("Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Cirrious.MvvmCross.Plugins.Sqlite.Wpf")]
+[assembly: AssemblyProduct("Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

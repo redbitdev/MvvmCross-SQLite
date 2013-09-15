@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Cirrious.MvvmCross.Plugins.Sqlite
+namespace Cirrious.MvvmCross.Community.Plugins.Sqlite
 {
     public interface ISQLiteConnectionFactory
     {

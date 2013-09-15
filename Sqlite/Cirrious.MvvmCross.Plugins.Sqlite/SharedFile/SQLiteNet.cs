@@ -43,7 +43,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading;
-using Cirrious.MvvmCross.Plugins.Sqlite;
+using Cirrious.MvvmCross.Community.Plugins.Sqlite;
 
 
 #if USE_CSHARP_SQLITE

@@ -9,7 +9,7 @@ using System;
 using System.IO;
 using SQLite;
 
-namespace Cirrious.MvvmCross.Plugins.Sqlite.Touch
+namespace Cirrious.MvvmCross.Community.Plugins.Sqlite.Touch
 {
     public class MvxTouchSQLiteConnectionFactory : ISQLiteConnectionFactory
     {
