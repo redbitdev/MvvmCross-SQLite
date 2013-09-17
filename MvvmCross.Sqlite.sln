@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Communit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsStore", "Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsStore\Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsStore.csproj", "{654E3C62-163F-430C-AE77-75E5B569722A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone.Community", "Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone.Community\Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone.Community.csproj", "{E043D17C-221A-41CB-BC75-1D48D5AD0B11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone.CS", "Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone.CS\Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone.CS.csproj", "{E043D17C-221A-41CB-BC75-1D48D5AD0B11}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf", "Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf\Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf.csproj", "{3B83CD5D-F846-41AF-A68D-FC715EAA81FB}"
 EndProject

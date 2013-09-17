@@ -61,19 +61,19 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Cirrious.MvvmCross.Plugins.Sqlite.WindowsPhone\MvxWindowsPhoneSQLiteConnectionFactory.cs">
+    <Compile Include="..\Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone\MvxWindowsPhoneSQLiteConnectionFactory.cs">
       <Link>MvxWindowsPhoneSQLiteConnectionFactory.cs</Link>
     </Compile>
-    <Compile Include="..\Cirrious.MvvmCross.Plugins.Sqlite.WindowsPhone\Plugin.cs">
+    <Compile Include="..\Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone\Plugin.cs">
       <Link>Plugin.cs</Link>
     </Compile>
-    <Compile Include="..\Cirrious.MvvmCross.Plugins.Sqlite\SharedFile\SQLiteNet.cs">
+    <Compile Include="..\Cirrious.MvvmCross.Community.Plugins.Sqlite\SharedFile\SQLiteNet.cs">
       <Link>SQLiteNet.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cirrious.MvvmCross.Plugins.Sqlite\Cirrious.MvvmCross.Plugins.Sqlite.csproj">
+    <ProjectReference Include="..\Cirrious.MvvmCross.Community.Plugins.Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.csproj">
       <Project>{72654B8A-5F78-4BDF-BFBB-057DDDF314F1}</Project>
       <Name>Cirrious.MvvmCross.Community.Plugins.Sqlite</Name>
     </ProjectReference>
