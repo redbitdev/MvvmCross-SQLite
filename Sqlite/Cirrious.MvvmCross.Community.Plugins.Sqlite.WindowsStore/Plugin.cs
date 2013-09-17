@@ -15,7 +15,9 @@ namespace Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsStore
     {
         public void Load()
         {
-            Mvx.RegisterSingleton<ISQLiteConnectionFactory>(new MvxStoreSQLiteConnectionFactory());
+            var factory = new MvxStoreSQLiteConnectionFactory();
+            Mvx.RegisterSingleton<ISQLiteConnectionFactory>(factory);
+            Mvx.RegisterSingleton<ISQLiteConnectionFactoryEx>(factory);
         }
     }
 }

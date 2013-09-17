@@ -11,6 +11,18 @@ using System.Linq.Expressions;
 
 namespace Cirrious.MvvmCross.Community.Plugins.Sqlite
 {
+    public class SQLiteConnectionOptions
+    {
+        public string Address { get; set; }
+        public string BasePath { get; set; }
+        public bool StoreDateTimeAsTicks { get; set; }
+    }
+
+    public interface ISQLiteConnectionFactoryEx
+    {
+        ISQLiteConnection CreateEx(string address, SQLiteConnectionOptions options = null);
+    }
+
     public interface ISQLiteConnectionFactory
     {
         ISQLiteConnection Create(string address);

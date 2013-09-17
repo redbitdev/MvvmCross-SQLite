@@ -5,15 +5,26 @@
 // 
 // Project Lead - Stuart Lodge, @slodge, me@slodge.com
 
+using System.IO;
 using SQLite;
 
 namespace Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone
 {
-    public class MvxWindowsPhoneSQLiteConnectionFactory : ISQLiteConnectionFactory
+    public class MvxWindowsPhoneSQLiteConnectionFactory
+        : ISQLiteConnectionFactory
+        , ISQLiteConnectionFactoryEx
     {
         public ISQLiteConnection Create(string address)
         {
-            return new SQLiteConnection(address);
+            return CreateEx(address);
+        }
+
+        public ISQLiteConnection CreateEx(string address, SQLiteConnectionOptions options = null)
+        {
+            options = options ?? new SQLiteConnectionOptions();
+            var path = options.BasePath ?? string.Empty;
+            var filePath = Path.Combine(path, address);
+            return new SQLiteConnection(filePath, options.StoreDateTimeAsTicks);
         }
     }
 }

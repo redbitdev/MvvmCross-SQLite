@@ -10,12 +10,21 @@ using SQLite;
 
 namespace Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf
 {
-	public class MvxWpfSqLiteConnectionFactory : ISQLiteConnectionFactory
-	{
-		public ISQLiteConnection Create(string address)
-		{
-			var path = Path.Combine(Directory.GetCurrentDirectory(), address);
-			return new SQLiteConnection(path, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
-		}
-	}
+    public class MvxWpfSqLiteConnectionFactory
+        : ISQLiteConnectionFactory
+        , ISQLiteConnectionFactoryEx
+    {
+        public ISQLiteConnection Create(string address)
+        {
+            return CreateEx(address);
+        }
+
+        public ISQLiteConnection CreateEx(string address, SQLiteConnectionOptions options = null)
+        {
+            options = options ?? new SQLiteConnectionOptions();
+            var path = options.BasePath ?? Directory.GetCurrentDirectory();
+            var filePath = Path.Combine(path, address);
+            return new SQLiteConnection(filePath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create, options.StoreDateTimeAsTicks);
+        }
+    }
 }

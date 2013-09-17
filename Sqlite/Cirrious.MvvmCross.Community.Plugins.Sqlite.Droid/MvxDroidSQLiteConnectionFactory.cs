@@ -11,12 +11,21 @@ using SQLite;
 
 namespace Cirrious.MvvmCross.Community.Plugins.Sqlite.Droid
 {
-    public class MvxDroidSQLiteConnectionFactory : ISQLiteConnectionFactory
+    public class MvxDroidSQLiteConnectionFactory 
+        : ISQLiteConnectionFactory
+        , ISQLiteConnectionFactoryEx
     {
         public ISQLiteConnection Create(string address)
         {
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            return new SQLiteConnection(Path.Combine(path, address));
+            return CreateEx(address);
+        }
+
+        public ISQLiteConnection CreateEx(string address, SQLiteConnectionOptions options = null)
+        {
+            options = options ?? new SQLiteConnectionOptions();
+            var path = options.BasePath ?? Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var filePath = Path.Combine(path, address);
+            return new SQLiteConnection(filePath, options.StoreDateTimeAsTicks);
         }
     }
 }
