@@ -126,6 +126,8 @@ namespace Cirrious.MvvmCross.Community.Plugins.Sqlite
 
         bool Trace { get; set; }
 
+        int CreateTable(Type type); 
+
         int CreateTable<T>();
 
         int DropTable<T>();
