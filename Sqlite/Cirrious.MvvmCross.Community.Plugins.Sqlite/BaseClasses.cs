@@ -13,6 +13,12 @@ namespace Cirrious.MvvmCross.Community.Plugins.Sqlite
 {
     public class SQLiteConnectionOptions
     {
+		public SQLiteConnectionOptions()
+		{
+		    // we want the default to be Ticks - see https://github.com/slodge/MvvmCross/issues/213#issuecomment-24610834
+			StoreDateTimeAsTicks = true;
+		}
+		
         public string Address { get; set; }
         public string BasePath { get; set; }
         public bool StoreDateTimeAsTicks { get; set; }
