@@ -7,7 +7,7 @@
 
 using System;
 using System.IO;
-using SQLite;
+using Community.SQLite;
 
 namespace Cirrious.MvvmCross.Community.Plugins.Sqlite.Droid
 {

@@ -97,7 +97,7 @@ namespace System.Diagnostics
 }
 #endif
 
-namespace SQLite
+namespace Community.SQLite
 {
     public class SQLiteException : Exception
     {
