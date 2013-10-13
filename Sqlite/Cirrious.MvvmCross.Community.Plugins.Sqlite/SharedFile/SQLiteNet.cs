@@ -2185,7 +2185,7 @@ namespace Community.SQLite
                 }
 				else if (value is TimeSpan)
 				{
-					SQLite3.BindInt64(stmt, ((TimeSpan)value).Ticks);	
+					SQLite3.BindInt64(stmt, index, ((TimeSpan)value).Ticks);	
 				}
                 else if (value is DateTime)
                 {
