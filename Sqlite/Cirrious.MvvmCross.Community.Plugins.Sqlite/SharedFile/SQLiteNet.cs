@@ -1794,9 +1794,20 @@ namespace Community.SQLite
                 MaxStringLength = Orm.MaxStringLength(prop);
             }
 
-            public void SetValue(object obj, object val)
-            {
-                _prop.SetValue(obj, val, null);
+            public void SetValue(object obj, object val) {
+				Type propType = _prop.PropertyType;
+				if (propType.IsNullableEnum()) {
+#if !NETFX_CORE
+					Type nullableType = propType.GetGenericArguments()[0];
+#else
+					Type nullableType = propType.GetTypeInfo().GenericTypeArguments[0];
+#endif
+					object result = val == null ? null : Enum.Parse(nullableType, val.ToString(), false);
+					_prop.SetValue(obj, result, null);
+				}
+				else {
+					_prop.SetValue(obj, val, null);
+				}
             }
 
             public object GetValue(object obj)
@@ -3365,5 +3376,16 @@ namespace Community.SQLite
             Null = 5
         }
     }
+
+	public static class TypeExtensions {
+		public static bool IsNullableEnum(this Type t) {
+			Type u = Nullable.GetUnderlyingType(t);
+#if !NETFX_CORE
+			return (u != null) && u.IsEnum;
+#else
+			return (u != null) && u.GetTypeInfo().IsEnum;
+#endif
+		}
+	}
 }
 // ReSharper restore all
