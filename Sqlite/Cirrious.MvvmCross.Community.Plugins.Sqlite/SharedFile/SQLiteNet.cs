@@ -1843,7 +1843,7 @@ namespace Community.SQLite
             {
                 return "integer";
             }
-            else if (clrType == typeof(UInt32) || clrType == typeof(Int64))
+            else if (clrType == typeof(UInt32) || clrType == typeof(Int64) || clrType == typeof(TimeSpan))
             {
                 return "bigint";
             }
@@ -2183,6 +2183,10 @@ namespace Community.SQLite
                 {
                     SQLite3.BindDouble(stmt, index, Convert.ToDouble(value));
                 }
+				else if (value is TimeSpan)
+				{
+					SQLite3.BindInt64(stmt, ((TimeSpan)value).Ticks);	
+				}
                 else if (value is DateTime)
                 {
                     if (storeDateTimeAsTicks)
@@ -2254,6 +2258,10 @@ namespace Community.SQLite
                 {
                     return (float)SQLite3.ColumnDouble(stmt, index);
                 }
+				else if (clrType == typeof (TimeSpan))
+				{
+					return new TimeSpan(SQLite3.ColumnInt64(stmt, index));	
+				}
                 else if (clrType == typeof(DateTime))
                 {
                     if (_conn.StoreDateTimeAsTicks)
