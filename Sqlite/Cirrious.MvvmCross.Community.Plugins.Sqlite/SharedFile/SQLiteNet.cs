@@ -1794,9 +1794,20 @@ namespace Community.SQLite
                 MaxStringLength = Orm.MaxStringLength(prop);
             }
 
-            public void SetValue(object obj, object val)
-            {
-                _prop.SetValue(obj, val, null);
+            public void SetValue(object obj, object val) {
+				Type propType = _prop.PropertyType;
+				if (propType.IsNullableEnum()) {
+#if !NETFX_CORE
+					Type nullableType = propType.GetGenericArguments()[0];
+#else
+					Type nullableType = propType.GetTypeInfo().GenericTypeArguments[0];
+#endif
+					object result = val == null ? null : Enum.Parse(nullableType, val.ToString(), false);
+					_prop.SetValue(obj, result, null);
+				}
+				else {
+					_prop.SetValue(obj, val, null);
+				}
             }
 
             public object GetValue(object obj)
@@ -1843,7 +1854,7 @@ namespace Community.SQLite
             {
                 return "integer";
             }
-            else if (clrType == typeof(UInt32) || clrType == typeof(Int64))
+            else if (clrType == typeof(UInt32) || clrType == typeof(Int64) || clrType == typeof(TimeSpan))
             {
                 return "bigint";
             }
@@ -2183,6 +2194,10 @@ namespace Community.SQLite
                 {
                     SQLite3.BindDouble(stmt, index, Convert.ToDouble(value));
                 }
+				else if (value is TimeSpan)
+				{
+					SQLite3.BindInt64(stmt, index, ((TimeSpan)value).Ticks);	
+				}
                 else if (value is DateTime)
                 {
                     if (storeDateTimeAsTicks)
@@ -2254,6 +2269,10 @@ namespace Community.SQLite
                 {
                     return (float)SQLite3.ColumnDouble(stmt, index);
                 }
+				else if (clrType == typeof (TimeSpan))
+				{
+					return new TimeSpan(SQLite3.ColumnInt64(stmt, index));	
+				}
                 else if (clrType == typeof(DateTime))
                 {
                     if (_conn.StoreDateTimeAsTicks)
@@ -3357,5 +3376,16 @@ namespace Community.SQLite
             Null = 5
         }
     }
+
+	public static class TypeExtensions {
+		public static bool IsNullableEnum(this Type t) {
+			Type u = Nullable.GetUnderlyingType(t);
+#if !NETFX_CORE
+			return (u != null) && u.IsEnum;
+#else
+			return (u != null) && u.GetTypeInfo().IsEnum;
+#endif
+		}
+	}
 }
 // ReSharper restore all
