@@ -25,7 +25,7 @@ namespace Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone
             options = options ?? new SQLiteConnectionOptions();
             var path = options.BasePath ?? string.Empty;
             var filePath = Path.Combine(path, address);
-            return new SQLiteConnection(filePath, options.StoreDateTimeAsTicks);
+            return SQLiteConnection.Create(filePath, options);
         }
     }
 }

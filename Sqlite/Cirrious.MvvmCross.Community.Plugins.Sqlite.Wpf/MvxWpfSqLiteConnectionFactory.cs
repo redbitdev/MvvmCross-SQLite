@@ -24,7 +24,12 @@ namespace Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf
             options = options ?? new SQLiteConnectionOptions();
             var path = options.BasePath ?? Directory.GetCurrentDirectory();
             var filePath = Path.Combine(path, address);
-            return new SQLiteConnection(filePath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create, options.StoreDateTimeAsTicks);
+
+            // not sure why, but WinStore and Wpf add these Flags values
+            if (!options.Flags.HasValue)
+                options.Flags = SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create;
+
+            return SQLiteConnection.Create(filePath, options);
         }
     }
 }

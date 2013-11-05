@@ -22,6 +22,7 @@ namespace Cirrious.MvvmCross.Community.Plugins.Sqlite
         public string Address { get; set; }
         public string BasePath { get; set; }
         public bool StoreDateTimeAsTicks { get; set; }
+        public SQLiteOpenFlags? Flags { get; set; }
     }
 
     public interface ISQLiteConnectionFactoryEx
@@ -32,6 +33,18 @@ namespace Cirrious.MvvmCross.Community.Plugins.Sqlite
     public interface ISQLiteConnectionFactory
     {
         ISQLiteConnection Create(string address);
+    }
+
+    [Flags]
+    public enum SQLiteOpenFlags
+    {
+        ReadOnly = 1, ReadWrite = 2, Create = 4,
+        NoMutex = 0x8000, FullMutex = 0x10000,
+        SharedCache = 0x20000, PrivateCache = 0x40000,
+        ProtectionComplete = 0x00100000,
+        ProtectionCompleteUnlessOpen = 0x00200000,
+        ProtectionCompleteUntilFirstUserAuthentication = 0x00300000,
+        ProtectionNone = 0x00400000
     }
 
     [Flags]

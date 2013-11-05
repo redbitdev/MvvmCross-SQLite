@@ -115,17 +115,6 @@ namespace Community.SQLite
         }
     }
 
-    [Flags]
-    public enum SQLiteOpenFlags
-    {
-        ReadOnly = 1, ReadWrite = 2, Create = 4,
-        NoMutex = 0x8000, FullMutex = 0x10000,
-        SharedCache = 0x20000, PrivateCache = 0x40000,
-        ProtectionComplete = 0x00100000,
-        ProtectionCompleteUnlessOpen = 0x00200000,
-        ProtectionCompleteUntilFirstUserAuthentication = 0x00300000,
-        ProtectionNone = 0x00400000
-    }
 
     /// <summary>
     /// Represents an open connection to a SQLite database.
@@ -152,6 +141,14 @@ namespace Community.SQLite
         public bool Trace { get; set; }
 
         public bool StoreDateTimeAsTicks { get; private set; }
+
+        public static SQLiteConnection Create(string filePath, SQLiteConnectionOptions options)
+        {
+            if (options.Flags.HasValue)
+                return new SQLiteConnection(filePath, options.Flags.Value, options.StoreDateTimeAsTicks);
+
+            return new SQLiteConnection(filePath, options.StoreDateTimeAsTicks);
+        }
 
         /// <summary>
         /// Constructs a new SQLiteConnection and opens a SQLite database specified by databasePath.
