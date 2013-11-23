@@ -74,6 +74,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ExpressRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <DocumentationFile>..\..\bin\Debug\Mvx\WindowsStore\x86\Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsStore.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>..\..\bin\Release\Mvx\WindowsStore\\x86\</OutputPath>
@@ -86,6 +87,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ExpressRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <DocumentationFile>..\..\bin\Release\Mvx\WindowsStore\x86\Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsStore.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->

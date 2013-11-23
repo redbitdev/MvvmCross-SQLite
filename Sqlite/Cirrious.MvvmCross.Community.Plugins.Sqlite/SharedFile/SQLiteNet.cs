@@ -184,8 +184,8 @@ namespace Community.SQLite
         /// </param>
         public SQLiteConnection(string databasePath, SQLiteOpenFlags openFlags, bool storeDateTimeAsTicks = false)
         {
-            if (string.IsNullOrEmpty(databasePath))
-                throw new ArgumentException("Must be specified", "databasePath");
+            if (databasePath == null)
+                throw new ArgumentException("Cannot be null, must be specified, or empty.", "databasePath");
 
             DatabasePath = databasePath;
 
@@ -196,7 +196,7 @@ namespace Community.SQLite
             Sqlite3DatabaseHandle handle;
 
 #if SILVERLIGHT || USE_CSHARP_SQLITE
-            var r = SQLite3.Open(databasePath, out handle, (int)openFlags, IntPtr.Zero);
+            var r = SQLite3.Open(databasePath, out handle, (int)openFlags, IntPtr.Zero);            
 #else
             // open using the byte[]
             // in the case where the path may include Unicode
@@ -228,7 +228,7 @@ namespace Community.SQLite
 
         public void EnableLoadExtension(int onoff)
         {
-#if WINDOWS_PHONE
+#if WINDOWS_PHONE || SILVERLIGHT || USE_CSHARP_SQLITE
             throw new NotImplementedException("EnableLoadExtension");
 #else
             SQLite3.Result r = SQLite3.EnableLoadExtension(Handle, onoff);

@@ -8,30 +8,136 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using SQLiteOpenFlags = System.Int16;
 
 namespace Cirrious.MvvmCross.Community.Plugins.Sqlite
 {
+    /// <summary>
+    /// This class is used to provide advanced options for creation of
+    /// a SQLiteConnection.
+    /// </summary>
     public class SQLiteConnectionOptions
     {
+        /// <summary>
+        /// Constructs a SQLiteConnectionOptions with default settings.
+        /// </summary>
 		public SQLiteConnectionOptions()
 		{
 		    // we want the default to be Ticks - see https://github.com/slodge/MvvmCross/issues/213#issuecomment-24610834
-			StoreDateTimeAsTicks = true;
+			StoreDateTimeAsTicks = true;        
 		}
-		
+		/// <summary>
+		/// The name of the database file.
+		/// </summary>
         public string Address { get; set; }
+        /// <summary>
+        /// The base path1 to use in conjunction with the Address to create 
+        /// the full location to store the database file.
+        /// </summary>
+        /// <remarks>
+        /// This is used for determining the name of File databases, and the key
+        /// used for distinct in-memory databases. This is not used for temporary
+        /// databases.
+        /// <para>
+        /// Please note that if this value is null it will be set based on best 
+        /// know location based on platform. Only provide this value if you 
+        /// know what you are doing. If this value is left empty it will not 
+        /// be replaced and only the Address will be used.
+        /// </para>
+        /// </remarks>
         public string BasePath { get; set; }
-        public bool StoreDateTimeAsTicks { get; set; }
+        /// <summary>
+        /// If true will store DateTime properties as ticks; otherwise it
+        /// will not. (Default: true)
+        /// </summary>
+        /// <remarks>
+        /// It is recommended to always set this to true, which the default. 
+        /// This is due to performance advantages as well as an MvvmCross 
+        /// documented issue:
+        /// https://github.com/slodge/MvvmCross/issues/213#issuecomment-24610834
+        /// </remarks>
+        public bool StoreDateTimeAsTicks { get; set; }        
+        /// <summary>
+        /// States which type of database should be created. (Default: File)
+        /// </summary>
+        public DatabaseType Type { get; set; }
+
+        /// <summary>
+        /// Types of databases that can be created.
+        /// </summary>
+        public enum DatabaseType 
+        {
+            /// <summary>
+            /// Specifies a file based database. (Default)
+            /// </summary>
+            File,
+            /// <summary>
+            /// Specifies a pure in-memory database.
+            /// </summary>
+            InMemory,
+            /// <summary>
+            /// Specifies a temporary file based database.
+            /// </summary>
+            Temporary,
+        }
     }
 
     public interface ISQLiteConnectionFactoryEx
     {
+        /// <summary>
+        /// Creates a SQLite database using the provided options.
+        /// </summary>
+        /// <param name="options">The options to use to create a SQLite connection.</param>
+        /// <returns>A ISQLiteConnection.</returns>
+        ISQLiteConnection CreateEx(SQLiteConnectionOptions options);
+        /// <summary>
+        /// Creates a SQLite database using the provided path2 and options.
+        /// </summary>
+        /// <param name="address">Address for the database.</param>
+        /// <remarks>The provide path2 will override any provided in the options.</remarks>
+        /// <param name="options">The options to use to create a SQLite connection.</param>
+        /// <returns>A ISQLiteConnection.</returns>
         ISQLiteConnection CreateEx(string address, SQLiteConnectionOptions options = null);
     }
 
     public interface ISQLiteConnectionFactory
     {
+        /// <summary>
+        /// Creates a SQLite database using the provided path2.
+        /// </summary>
+        /// <param name="address">Address for the database.</param>
+        /// <returns>A ISQLiteConnection.</returns>
         ISQLiteConnection Create(string address);
+        /// <summary>
+        /// Creates a in-memory SQLite database.
+        /// </summary>
+        /// <remarks>
+        /// This method will create NO FILES on disk and it will be a new 
+        /// database that exists only in memory. Once the connection is closed
+        /// the database will no longer exist. You can open multiple in memory
+        /// databases and they will each be created as an isolated in-memory 
+        /// databases.
+        /// </remarks>
+        /// <returns>An ISQLiteConnection to a isolated in-memory database.</returns>
+        ISQLiteConnection CreateInMemory();
+        /// <summary>
+        /// Creates a new temporary SQLite database.
+        /// </summary>
+        /// <remarks>
+        /// Each call will create a new temporary file based database. Each connection 
+        /// will therefore be to is own temporary database. Once the connection that 
+        /// created it is closed the temporary database will be deleted.
+        /// <para>
+        /// Please note that while a file is created for each temporary database
+        /// that typically it will reside in the in-memory pager cache. This is
+        /// still different from a pure in-memory database created by the Created*InMemory
+        /// methods in that the temporary database may be flushed to the file if
+        /// it becomes to large or if the underlying SQLite engine is placed under 
+        /// memory pressure. This never occurs with the pure in-memory database options.
+        /// </para>
+        /// </remarks>
+        /// <returns>A ISQLiteConnection to a temporary database.</returns>
+        ISQLiteConnection CreateTemp();
     }
 
     [Flags]
@@ -47,19 +153,8 @@ namespace Cirrious.MvvmCross.Community.Plugins.Sqlite
 
     public class ColumnInfo
     {
-        //			public int cid { get; set; }
-
         [Column("name")]
         public string Name { get; set; }
-
-        //			[Column ("type")]
-        //			public string ColumnType { get; set; }
-
-        //			public int notnull { get; set; }
-
-        //			public string dflt_value { get; set; }
-
-        //			public int pk { get; set; }
 
         public override string ToString()
         {
@@ -798,5 +893,109 @@ namespace Cirrious.MvvmCross.Community.Plugins.Sqlite
         int DeleteAll<T>();
 
         void Close();
+    }
+
+    /// <summary>
+    /// Base class that each platform specific SQLiteConnectionFactory 
+    /// should extend.
+    /// </summary>
+    public abstract class MvxBaseSQLiteConnectionFactory
+        : ISQLiteConnectionFactory
+            , ISQLiteConnectionFactoryEx
+    {
+        private const string InMemoryDatabase = ":memory:";
+
+        public virtual ISQLiteConnection Create(string address)
+        {
+            return CreateEx(address);
+        }
+
+        public virtual ISQLiteConnection CreateInMemory()
+        {
+            var options = new SQLiteConnectionOptions { Type = SQLiteConnectionOptions.DatabaseType.InMemory, };
+            return CreateEx(options);
+        }
+
+        public virtual ISQLiteConnection CreateTemp()
+        {
+            var options = new SQLiteConnectionOptions { Type = SQLiteConnectionOptions.DatabaseType.Temporary, };
+            return CreateEx(options);
+        }
+
+        public virtual ISQLiteConnection CreateEx(SQLiteConnectionOptions options)
+        {
+            if (options == null) 
+                throw new ArgumentNullException("options");
+            switch (options.Type)
+            {
+                case SQLiteConnectionOptions.DatabaseType.InMemory: 
+                    return CreateInMemoryDb(options);
+                case SQLiteConnectionOptions.DatabaseType.Temporary: 
+                    return CreateTempDb(options);
+                default: 
+                    return CreateFileDb(options);
+            }
+        }
+
+        public virtual ISQLiteConnection CreateEx(string address, SQLiteConnectionOptions options = null)
+        {
+            options = options ?? new SQLiteConnectionOptions();
+            options.Address = address;
+            return CreateEx(options);
+        }
+
+        private ISQLiteConnection CreateFileDb(SQLiteConnectionOptions options)
+        {
+            if (string.IsNullOrWhiteSpace(options.Address))
+                throw new ArgumentException(Properties.Resources.CreateFileDbInvalidAddress);
+            var path = options.BasePath ?? GetDefaultBasePath();
+            string filePath = LocalPathCombine(path, options.Address);
+            return CreateSQLiteConnection(filePath, options.StoreDateTimeAsTicks);
+        }
+
+        private ISQLiteConnection CreateInMemoryDb(SQLiteConnectionOptions options)
+        {
+            return CreateSQLiteConnection(InMemoryDatabase, options.StoreDateTimeAsTicks);
+        }
+
+        private ISQLiteConnection CreateTempDb(SQLiteConnectionOptions options)
+        {
+            return CreateSQLiteConnection(string.Empty, options.StoreDateTimeAsTicks);
+        }
+
+        /// <summary>
+        /// Returns the platform specific default base path1.
+        /// </summary>
+        /// <returns>
+        /// Returns default base path.
+        /// </returns>
+        protected abstract string GetDefaultBasePath();
+        /// <summary>
+        /// Combines two strings into a platform specific path1.
+        /// </summary>
+        /// <remarks>
+        /// If one of the specified paths is a zero-length string, 
+        /// this method returns the other path. If <paramref name="path2"/> 
+        /// contains an absolute path, this method returns 
+        /// <paramref name="path2"/>.
+        /// </remarks>
+        /// <param name="path1">The first path1 to combine</param>
+        /// <param name="path2">The second path1 to combine.</param>
+        /// <returns>
+        /// The combined paths.
+        /// </returns>
+        protected abstract string LocalPathCombine(string path1, string path2);
+        /// <summary>
+        /// Creates the platform specific SQLiteConnection.
+        /// </summary>
+        /// <param name="databasePath">
+        /// The name of a file that does or will contain the database.
+        /// </param>
+        /// <param name="storeDateTimeAsTicks">
+        /// If true will store DateTime properties as ticks; otherwise it
+        /// will not.
+        /// </param>
+        /// <returns>Returns the interface to a SQLiteConnection.</returns>
+        protected abstract ISQLiteConnection CreateSQLiteConnection(string databasePath, bool storeDateTimeAsTicks);
     }
 }

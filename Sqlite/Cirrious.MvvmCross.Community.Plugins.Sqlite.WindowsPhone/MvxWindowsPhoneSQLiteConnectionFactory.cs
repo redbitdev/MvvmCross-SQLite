@@ -5,27 +5,29 @@
 // 
 // Project Lead - Stuart Lodge, @slodge, me@slodge.com
 
+using System;
 using System.IO;
 using Community.SQLite;
-
+using CommonResources = Cirrious.MvvmCross.Community.Plugins.Sqlite.Properties.Resources;
 
 namespace Cirrious.MvvmCross.Community.Plugins.Sqlite.WindowsPhone
 {
     public class MvxWindowsPhoneSQLiteConnectionFactory
-        : ISQLiteConnectionFactory
-        , ISQLiteConnectionFactoryEx
+        : MvxBaseSQLiteConnectionFactory
     {
-        public ISQLiteConnection Create(string address)
+        protected override string GetDefaultBasePath()
         {
-            return CreateEx(address);
+            return string.Empty;
         }
 
-        public ISQLiteConnection CreateEx(string address, SQLiteConnectionOptions options = null)
+        protected override string LocalPathCombine(string path1, string path2)
         {
-            options = options ?? new SQLiteConnectionOptions();
-            var path = options.BasePath ?? string.Empty;
-            var filePath = Path.Combine(path, address);
-            return new SQLiteConnection(filePath, options.StoreDateTimeAsTicks);
+            return Path.Combine(path1, path2);
+        }
+
+        protected override ISQLiteConnection CreateSQLiteConnection(string databasePath, bool storeDateTimeAsTicks)
+        {
+            return new SQLiteConnection(databasePath, storeDateTimeAsTicks);
         }
     }
 }

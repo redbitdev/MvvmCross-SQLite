@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B83CD5D-F846-41AF-A68D-FC715EAA81FB}</ProjectGuid>
+    <ProjectGuid>{994C6769-E8FB-4F8E-A83D-AA8C273F00E9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf</RootNamespace>
-    <AssemblyName>Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf</AssemblyName>
+    <RootNamespace>TestSqliteWpf</RootNamespace>
+    <AssemblyName>TestSqliteWpf</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProductVersion>12.0.0</ProductVersion>
@@ -18,22 +18,33 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\Debug\Mvx\Wpf\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;USE_CSHARP_SQLITE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\bin\Debug\Mvx\Wpf\Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf.XML</DocumentationFile>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\Release\Mvx\Wpf\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\bin\Release\Mvx\Wpf\Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cirrious.CrossCore.Wpf">
+      <HintPath>..\..\packages\MvvmCross.HotTuna.CrossCore.3.0.13\lib\net45\Cirrious.CrossCore.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Localization">
+      <HintPath>..\..\packages\MvvmCross.HotTuna.CrossCore.3.0.13\lib\net45\Cirrious.MvvmCross.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Test.Core">
+      <HintPath>..\..\packages\MvvmCross.HotTuna.Tests.3.0.13\lib\net45\Cirrious.MvvmCross.Test.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,29 +55,23 @@
     <Reference Include="Cirrious.CrossCore">
       <HintPath>..\..\packages\MvvmCross.HotTuna.CrossCore.3.0.13\lib\net45\Cirrious.CrossCore.dll</HintPath>
     </Reference>
-    <Reference Include="Cirrious.CrossCore.Wpf">
-      <HintPath>..\..\packages\MvvmCross.HotTuna.CrossCore.3.0.13\lib\net45\Cirrious.CrossCore.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Localization">
-      <HintPath>..\..\packages\MvvmCross.HotTuna.CrossCore.3.0.13\lib\net45\Cirrious.MvvmCross.Localization.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Cirrious.MvvmCross.Community.Plugins.Sqlite\SharedFile\SQLiteNet.cs">
-      <Link>SQLiteNet.cs</Link>
-    </Compile>
-    <Compile Include="MvxWpfSqLiteConnectionFactory.cs" />
-    <Compile Include="Plugin.cs" />
+    <Compile Include="CreateDatabaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cirrious.MvvmCross.Community.Plugins.Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.csproj">
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf\Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf.csproj">
+      <Project>{3B83CD5D-F846-41AF-A68D-FC715EAA81FB}</Project>
+      <Name>Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite\Cirrious.MvvmCross.Community.Plugins.Sqlite.csproj">
       <Project>{72654B8A-5F78-4BDF-BFBB-057DDDF314F1}</Project>
       <Name>Cirrious.MvvmCross.Community.Plugins.Sqlite</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
