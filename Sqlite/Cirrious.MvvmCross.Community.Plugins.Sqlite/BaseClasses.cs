@@ -317,6 +317,8 @@ namespace Cirrious.MvvmCross.Community.Plugins.Sqlite
 
         IEnumerable<T> ExecuteDeferredQuery<T>(ITableMapping map);
 
+        SQLiteDataResultSet ExecuteDeferredQuery();
+
         T ExecuteScalar<T>();
 
         void Bind(string name, object val);
@@ -541,6 +543,14 @@ namespace Cirrious.MvvmCross.Community.Plugins.Sqlite
         /// connection must remain open for the lifetime of the enumerator.
         /// </returns>
         IEnumerable<object> DeferredQuery(ITableMapping map, string query, params object[] args);
+
+        /// <summary>
+        /// Execute a query to return a data result set of rows and columns
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        SQLiteDataResultSet QueryDataResults(string query, params object[] args);
 
         /// <summary>
         /// Returns a queryable interface to the table represented by the given type.

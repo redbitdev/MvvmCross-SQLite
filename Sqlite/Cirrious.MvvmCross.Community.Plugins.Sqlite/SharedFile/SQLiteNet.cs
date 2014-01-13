@@ -746,6 +746,18 @@ namespace Community.SQLite
         }
 
         /// <summary>
+        /// Execute a sql query without the use of generics. It returns a list of rows and columns
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public SQLiteDataResultSet QueryDataResults(string query, params object[] args)
+        {
+            var cmd = CreateCommand(query, args);
+            return cmd.ExecuteDeferredQuery();
+        }
+
+        /// <summary>
         /// Returns a queryable interface to the table represented by the given type.
         /// </summary>
         /// <returns>
@@ -2061,6 +2073,74 @@ namespace Community.SQLite
                     OnInstanceCreated(obj);
                     yield return (T)obj;
                 }
+            }
+            finally
+            {
+                SQLite3.Finalize(stmt);
+            }
+        }
+
+        /// <summary>
+        /// Executes the query returning a result set of rows and column data
+        /// </summary>
+        /// <returns></returns>
+        public SQLiteDataResultSet ExecuteDeferredQuery()
+        {
+            var stmt = Prepare();
+            try
+            {
+                // get all the columns
+                var totalColumns = SQLite3.ColumnCount(stmt);
+                var cols = new List<string>(totalColumns);
+                for (int i = 0; i < totalColumns; i++)
+                {
+                    var name = SQLite3.ColumnName16(stmt, i);
+                    cols.Add(name);
+                }
+
+                // create the result set
+                var ret = new SQLiteDataResultSet(cols);
+
+                // read all the rows
+                while (SQLite3.Step(stmt) == SQLite3.Result.Row)
+                {
+                    // once the row is read, get all the column data
+                    var colData = new List<object>();
+                    for (int index = 0; index < cols.Count; index++)
+                    {
+                        if (cols[index] == null)
+                            continue;
+                        var colType = (SQLite.SQLite3.ColType)SQLite3.ColumnType(stmt, index);
+                        object obj = null;
+                        switch (colType)
+                        {
+                            case SQLite3.ColType.Integer:
+                                obj = (int)SQLite3.ColumnInt(stmt, index);
+                                break;
+                            case SQLite3.ColType.Float:
+                                obj = (float)SQLite3.ColumnDouble(stmt, index);
+                                break;
+                            case SQLite3.ColType.Text:
+                                obj = SQLite3.ColumnString(stmt, index);
+                                break;
+                            case SQLite3.ColType.Blob:
+                                obj = SQLite3.ColumnByteArray(stmt, index);
+                                break;
+                            case SQLite3.ColType.Null:
+                                obj = null;
+                                break;
+                            default:
+                                throw new Exception("FATAL: Unknown sqlite3_column_type");
+                        }
+                        colData.Add(obj);
+                    }
+
+                    // add to the collection of rows
+                    ret.Add(colData);
+                }
+
+                // when done return the collection
+                return ret;
             }
             finally
             {

@@ -45,6 +45,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RedBit.SQLiteDataResultSet.cs" />
     <None Include="packages.config" />
     <None Include="SharedFile\SQLiteNet.cs" />
   </ItemGroup>
