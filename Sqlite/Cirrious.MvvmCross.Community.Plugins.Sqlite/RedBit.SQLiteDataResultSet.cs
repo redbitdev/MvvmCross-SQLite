@@ -20,22 +20,26 @@ namespace Cirrious.MvvmCross.Community.Plugins.Sqlite
             this.Columns = columns;
         }
 
-        ///// <summary>
-        ///// Gets the data of the column
-        ///// </summary>
-        ///// <param name="columnName">the name of the column</param>
-        ///// <returns></returns>
-        //public object this[string columnName]
-        //{
-        //    get
-        //    {
-        //        var index = _columnNames.FindIndex(x => x.Equals(columnName));
-        //        if (index != -1)
-        //            return this[index];
-        //        else
-        //            return null;
-        //    }
-        //}
+        /// <summary>
+        /// Gets the data value as a string
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
+        public string GetData(int row, string column)
+        {
+            var col = this.Columns.IndexOf(column);
+            if (col == -1)
+                return null;
+            else
+            {
+                var ret = this[row][col];
+                if (ret == null)
+                    return null;
+                else
+                    return ret.ToString();
+            }
+        }
 
         /// <summary>
         /// The columns available in the data results
